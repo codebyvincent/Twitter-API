@@ -1,0 +1,406 @@
+@startuml
+'Extensions
+'Association <|-- (owner <|-- pet) Implements
+'Composition *-- (pet *-- leg) Instantiation (part of)
+'Aggregation o-- (car o-- wheel) Extends (has a)
+
+'Access Modifiers
+'+ public
+'- private
+'# protected
+'~ package private
+
+class EntryPoint <<for diagram only>>
+
+'Presentation layer
+    'Controllers
+    class UserController {
+        - final userService: UserService
+        - createUser(userRequestDto: UserRequestDto): UserResponseDto
+        - getAllUsers(): List<UserResponseDto>
+        - getUserByValue(userRequestDto: UserRequestDto): List<UserResponseDto>
+        - updateUser(userRequestDto: UserRequestDto): UserResponseDto
+        - deleteUser(userRequestDto: UserRequestDto)): UserResponseDto
+    }
+
+    class AnnouncementsController {
+        - final announcementsService: AnnouncementsService
+        - createAnnouncement(announcementsRequestDto: AnnouncementsRequestDto): AnnouncementResponseDto
+        - getAllAnnouncements(): List<AnnouncementResponseDto>
+    }
+
+    class CompanyController {
+        - final companyService: companyService
+        - createCompany(companyRequestDto: CompanyRequestDto): CompanyResponseDto
+        - getAllCompanies(): List<CompanyResponseDto>
+        - getCompanyByValue(companyRequestDto: CompanyRequestDto): CompanyResponseDto
+        - updateCompany((companyRequestDto: CompanyRequestDto): CompanyResponseDto
+        - deleteCompany((companyRequestDto: CompanyRequestDto): CompanyResponseDto
+    }
+
+    class ProjectsController {
+        - final projectsService: ProjectsService
+        - createProject(projectsRequestDto: ProjectsRequestDto): ProjectsResponseDto
+        - getAllProjects(): List<ProjectsResponseDto>
+        - getProjectByValue(projectsRequestDto: ProjectsRequestDto): ProjectsResponseDto
+        - updateProject(projectsRequestDto: ProjectsRequestDto): ProjectsResponseDto
+    }
+
+    class TeamController {
+        - final teamService: TeamService
+        - createTeam(teamRequestDto: TeamRequestDto): TeamResponseDto
+        - getAllTeams(): List<TeamResponseDto>
+        - getTeamByValue(teamRequestDto: TeamRequestDto): List<TeamResponseDto>
+        - updateTeam(teamRequestDto: TeamRequestDto): TeamResponseDto
+        - deleteTeam(teamRequestDto: TeamRequestDto): TeamResponseDto
+    }
+
+    'Exceptions
+    class BadRequestException {
+        - final serializedVersionUID long
+        - String message
+    }
+
+    class NotAuthorizedException {
+        - final serializedVersionUID long
+        - String message
+    }
+
+    class NotFoundException {
+        - final serializedVersionUID long
+        - String message
+    }
+
+    'ExceptionHandling
+    class WikiControllerAdvice {
+        - handleBadRequestException(): ErrorDto
+        - handleNotAuthorizedException(): ErrorDto
+        - handleNotFoundException(): ErrorDto
+    }
+
+'Service layer
+    'Service Behavior
+    interface UserService {
+        - createUser(userRequestDto: UserRequestDto): UserResponseDto
+        - getAllUsers(): List<UserResponseDto>
+        - getUserByValue(userRequestDto: UserRequestDto): List<UserResponseDto>
+        - updateUser(userRequestDto: UserRequestDto): UserResponseDto
+        - deleteUser(userRequestDto: UserRequestDto)): UserResponseDto
+    }
+
+    interface AnnouncementsService {
+        - createAnnouncement(announcementsRequestDto: AnnouncementsRequestDto): AnnouncementResponseDto
+        - getAllAnnouncements(): List<AnnouncementResponseDto>
+    }
+
+    interface CompanyService {
+        - createCompany(companyRequestDto: CompanyRequestDto): CompanyResponseDto
+        - getAllCompanies(): List<CompanyResponseDto>
+        - getCompanyByValue(companyRequestDto: CompanyRequestDto): CompanyResponseDto
+        - updateCompany((companyRequestDto: CompanyRequestDto): CompanyResponseDto
+        - deleteCompany((companyRequestDto: CompanyRequestDto): CompanyResponseDto
+    }
+
+    interface ProjectsService {
+        - createProject(projectsRequestDto: ProjectsRequestDto): ProjectsResponseDto
+        - getAllProjects(): List<ProjectsResponseDto>
+        - getProjectByValue(projectsRequestDto: ProjectsRequestDto): ProjectResponseDto
+        - updateProject(projectsRequestDto: ProjectsRequestDto): ProjectsResponseDto
+    }
+
+    interface TeamService {
+        - createTeam(teamRequestDto: TeamRequestDto): TeamResponseDto
+        - getAllTeams(): List<TeamResponseDto>
+        - getTeamByValue(teamRequestDto: TeamRequestDto): List<TeamResponseDto>
+        - updateTeam(teamRequestDto: TeamRequestDto): TeamResponseDto
+        - deleteTeam(teamRequestDto: TeamRequestDto): TeamResponseDto
+    }
+
+    'Service Implementation
+        class UserServiceImpl {
+            - userRepository: UserRepository
+            - userMapper: UserMapper
+            - createUser(userRequestDto: UserRequestDto): UserResponseDto
+            - getAllUsers(): List<UserResponseDto>
+            - getUserByValue(userRequestDto: UserRequestDto): List<UserResponseDto>
+            - updateUser(userRequestDto: UserRequestDto): UserResponseDto
+            - deleteUser(userRequestDto: UserRequestDto)): UserResponseDto
+        }
+
+        class AnnouncementsServiceImpl {
+            - announcementsRepository: AnnouncementsRepository
+            - announcementsMapper: AnnouncementsMapper
+            - createAnnouncement(announcementsRequestDto: AnnouncementsRequestDto): AnnouncementResponseDto
+            - getAllAnnouncements(): List<AnnouncementResponseDto>
+        }
+
+        class CompanyServiceImpl {
+            - companyRepository: CompanyRepository
+            - companyMapper: CompanyMapper
+            - createCompany(companyRequestDto: CompanyRequestDto): CompanyResponseDto
+            - getAllCompanies(): List<CompanyResponseDto>
+            - getCompanyByValue(companyRequestDto: CompanyRequestDto): CompanyResponseDto
+            - updateCompany((companyRequestDto: CompanyRequestDto): CompanyResponseDto
+            - deleteCompany((companyRequestDto: CompanyRequestDto): CompanyResponseDto
+        }
+
+        class ProjectsServiceImpl {
+            - projectsRepository: ProjectsRepository
+            - projectsMapper: ProjectsMapper
+            - createProject(projectsRequestDto: ProjectsRequestDto): ProjectsResponseDto
+            - getAllProjects(): List<ProjectsResponseDto>
+            - getProjectByValue(projectsRequestDto: ProjectsRequestDto): ProjectsResponseDto
+            - updateProject(projectsRequestDto: ProjectsRequestDto): ProjectsResponseDto
+        }
+
+        class TeamServiceImpl {
+            - teamRepository: TeamRepository
+            - teamMapper: TeamMapper
+            - createTeam(teamRequestDto: TeamRequestDto): TeamResponseDto
+            - getAllTeams(): List<TeamResponseDto>
+            - getTeamByValue(teamRequestDto: TeamRequestDto): List<TeamResponseDto>
+            - updateTeam(teamRequestDto: TeamRequestDto): TeamResponseDto
+            - deleteTeam(teamRequestDto: TeamRequestDto): TeamResponseDto
+        }
+
+    'Mapper
+        interface UserMapper {
+
+        }
+
+        interface AnnouncementsMapper {
+
+        }
+
+        interface CompanyMapper {
+
+        }
+
+        interface ProjectsMapper {
+
+        }
+
+        interface TeamMapper {
+
+        }
+
+    'Data
+        class UserData {
+            - username: String
+            - password: String
+            - first: String
+            - last: String
+            - email: String
+            - phone: String
+            - active: boolean
+            - admin: boolean
+            - status: String
+            - team: Long
+            - company: Long
+        }
+
+        class CompanyData {
+            - name: String
+            - description: String
+        }
+
+        class ProjectsData {
+            - name: String
+            - description: String
+            - active: boolean
+            - team: Long
+        }
+
+        class TeamData {
+            - name: String
+            - description: String
+            - company: Long
+        }
+
+    'Dto's
+        class UserRequestDto {
+            - admin: String
+            - userData: UserData
+        }
+
+        class UserResponseDto {
+            - username: String
+            - first: String
+            - last: String
+            - email: String
+            - phone: String
+            - active: boolean
+            - admin: boolean
+            - status: String
+            - team: Long
+            - company: Long
+        }
+
+        class AnnouncementsDto {
+            - title: String
+            - message: String
+            - company: Long
+            - user: Long
+        }
+
+        class CompanyRequestDto {
+            - admin: boolean
+            - companyData: CompanyData
+        }
+
+        class CompanyResponseDto {
+            - name: String
+            - description: String
+        }
+
+        class ProjectsDto {
+            - admin: boolean
+            - projectsData: ProjectsData
+        }
+
+        class TeamRequestDto {
+            - admin: boolean
+            - teamData: TeamData
+        }
+
+        class TeamResponseDto {
+            - name: String
+            - description: String
+            - company: Long
+        }
+
+'Persistence layer
+    'Repositories
+    class UserRepository <<JPARepository>> {
+    }
+
+    class AnnouncementsRepository <<JPARepository>> {
+    }
+
+    class CompanyRepository <<JPARepository>> {
+    }
+
+    class ProjectsRepository <<JPARepository>> {
+    }
+
+    class TeamRepository <<JPARepository>> {
+    }
+
+    'Entities
+    class Users {
+        - id : Long
+        - username: String
+        - password: String
+        - first: String
+        - last: String
+        - email: String
+        - phone: String
+        - admin: boolean
+        - status: String
+        - team: Long
+        - company: Long
+    }
+
+    class Announcements {
+        - id: Long
+        - date: Timestamp
+        - title: String
+        - message: String
+        - company: Long
+        - user: Long
+    }
+
+    class Company {
+        - id: Long
+        - name: String
+        - description: String
+    }
+
+    class Projects {
+        - id: Long
+        - name: String
+        - description: String
+        - active: boolean
+        - team: Long
+    }
+
+    class Team {
+        - id: Long
+        - name: String
+        - description: String
+        - company: Long
+    }
+
+'Relationships
+EntryPoint -- UserController
+EntryPoint -- AnnouncementsController
+EntryPoint -- CompanyController
+EntryPoint -- ProjectsController
+EntryPoint -- TeamController
+
+WikiControllerAdvice .. NotAuthorizedException
+WikiControllerAdvice .. NotFoundException
+WikiControllerAdvice .. BadRequestException
+
+UserController *-- UserService
+
+AnnouncementsController *-- AnnouncementsService
+
+CompanyController *-- CompanyService
+
+ProjectsController *-- ProjectsService
+
+TeamController *-- TeamService
+
+UserServiceImpl o-- UserService
+UserServiceImpl *-- UserRepository
+UserServiceImpl *-- UserMapper
+
+AnnouncementsServiceImpl o-- AnnouncementsService
+AnnouncementsServiceImpl *-- AnnouncementsRepository
+AnnouncementsServiceImpl *-- AnnouncementsMapper
+
+CompanyServiceImpl o-- CompanyService
+CompanyServiceImpl *-- CompanyRepository
+CompanyServiceImpl *-- CompanyMapper
+
+ProjectsServiceImpl o-- ProjectsService
+ProjectsServiceImpl *-- ProjectsRepository
+ProjectsServiceImpl *-- ProjectsMapper
+
+TeamServiceImpl o-- TeamService
+TeamServiceImpl *-- TeamRepository
+TeamServiceImpl *-- TeamMapper
+
+UserMapper -- UserRequestDto
+UserMapper -- UserResponseDto
+
+AnnouncementsMapper -- AnnouncementsDto
+
+CompanyMapper -- CompanyRequestDto
+CompanyMapper -- CompanyResponseDto
+
+ProjectsMapper -- ProjectsDto
+
+TeamMapper -- TeamRequestDto
+TeamMapper -- TeamResponseDto
+
+UserResponseDto *-- UserData
+
+CompanyResponseDto *-- CompanyData
+
+ProjectsDto *-- ProjectsData
+
+TeamResponseDto *-- TeamData
+
+UserRepository -- Users
+
+AnnouncementsRepository -- Announcements
+
+CompanyRepository -- Company
+
+ProjectsRepository -- Projects
+
+TeamRepository -- Team
+
+@enduml
